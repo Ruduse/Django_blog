@@ -1,0 +1,84 @@
+mysite > urls
+path("blog/<int:id>/", Post.getPost),
++static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# post.html
+{% comment %} <!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết bài viết</title>
+  </head>
+  <body>
+    <h1>{{ post.title }}</h1>
+    <tr>
+      <td>{{post.body}}</td>
+      <td>{{post.date}}</td>
+      <td>{{post.audio}}</td>
+      <td>
+        <img
+          src="/home/media/{{post.image}}"
+          alt="Ảnh của bài viết"
+          class="img"
+          style="max height:150px;width: 80px;"
+        />
+      </td>
+    </tr>
+
+    <!-- Các chức năng khác ở đây -->
+  </body>
+</html>
+{% endcomment %}
+
+# post.html
+<div>
+  <h1>{{ post.title }}</h1>
+  <tr>
+    <td>{{post.body}}</td>
+    <td>{{post.date}}</td>
+    <td><audio src="{{post.audio.url}}" controls></audio></td>
+    <td>
+      <img
+        src="/home/media/{{post.image}}"
+        alt="Ảnh của bài viết"
+        class="img"
+        style="max height:150px;width: 80px;"
+      />
+    </td>
+  </tr>
+
+  <!-- Các chức năng khác ở đây -->
+</div>
+
+
+# cách 1 chèn image/audio : tại file post.html
+  <img src="/home/media/images/{{post.image}}" alt="Image" />
+      <audio controls>
+        <source src="/home/media/files/music/{{post.audio}}" />
+        Your browser does not support the audio element.
+      </audio>
+# cách 2 như sau:
+# tại file post.html
+      <img src="/home/media/images/{{post.image}}" alt="Image" />
+      <audio controls>
+        <source src="/home/media/{{post.audio}}" />
+        Your browser does not support the audio element.
+      </audio>
+# tại models.py
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="images", null=False, default=None)
+    audio = models.FileField(upload_to="media", null=False, default=None)
+
+    def get_Post(id):
+        return Post.objects.get(id=id)
+
+    def __str__(self):
+        return self.title

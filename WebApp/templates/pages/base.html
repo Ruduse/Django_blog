@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        background-color: #f6f6f6;
+      }
+    </style>
+  </head>
+  <body>
+    {% comment %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          <center>
+            <img src="{% static "images/Datbro.jpg" %}" class="responsive-img"
+            style="max height:150px"/>
+          </center>
+        </div>
+        <div class="col-sm-10">
+          <center><h1>Blog Làm từ Python Django</h1></center>
+        </div>
+      </div>
+      {% block content %} {% endblock %} {% endcomment %}
+      <div class="container-fluid" style="min-height=95%">
+        <div class="row">
+          <div class="col-sm-2">
+            <center>
+              <img src="{% static "images/Datbro.jpg" %}" class="responsive-img"
+              style="max height:150px"/>
+            </center>
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <center><h1>Blog làm từ django python</h1></center>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="bs-sliderbar" style="background-color: #ffffff">
+            <ul class="nav flex-column">
+              <li><a href="/">thông tin cá nhân</a></li>
+              <li><a href="/blog">bài viết</a></li>
+              <li><a href="/contact">liên hệ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-10">{% block content %}{% endblock %}</div>
+      </div>
+    </div>
+    <footer>
+      <div class="container-fluid">
+        <a href="#">facebook</a>|<a href="#">twitter</a>|<a href="#">google</a>
+      </div>
+    </footer>
+  </body>
+</html>

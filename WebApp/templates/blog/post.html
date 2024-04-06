@@ -1,0 +1,77 @@
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-size: 28px;
+        color: #333;
+      }
+      p {
+        font-size: 16px;
+        color: #555;
+      }
+      img {
+        max-width: 200px;
+        height: 170px;
+        margin-bottom: 20px;
+        oject-fit: cover;
+      }
+      audio {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      btn {
+        margin: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>{{ post.title }}</h1>
+      <tr>
+        <td>{{post.body}}</td>
+        <td>{{post.date}}</td>
+        <td><audio src="{{post.audio.url}}" controls></audio></td>
+        <td>
+          <img
+            src="/home/media/{{post.image}}"
+            alt="Ảnh của bài viết"
+            class="img"
+            style="max height:150px;width: 80px;"
+          />
+        </td>
+      </tr>
+      <a
+        href="/blog/"
+        style="
+          justify-self: center;
+          align-items: center;
+          display: flex;
+          text-decoration: none;
+        "
+        ><button class="btn">BACK</button></a
+      >
+      <!-- Các chức năng khác ở đây -->
+    </div>
+  </body>
+</html>
+
+{% endblock body %}

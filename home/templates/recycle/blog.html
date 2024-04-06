@@ -1,0 +1,22 @@
+{% extends "pages\base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% block title %} Home {% endblock %}
+  </head>
+  <body>
+    <div><button class="btn btn-primary">Add Blog</button></div>
+    {%block content %} {% for post in Posts %}
+    <h4>
+      {{post.date| date:"d-m-Y"}}
+      <a href="/blog/{{ post.id }}" target="_blank">{{ post.title }}</a>
+    </h4>
+    {% endfor %} {% endblock %}
+  </body>
+</html>
+
+{% comment %} <a href="/WebApp/{{post.id}}">{{post.title}}</a> {% endcomment %}
